@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import router from 'next/router';
+import Head from 'next/head';
 import loading from '../../../public/images/loading.gif'
 import useAuth from '../../data/hook/useAuth';
 
@@ -12,6 +13,19 @@ export default function ForcarAutenticacao(props){
     function renderizarConteudo() {
         return(
             <>
+
+                <Head>
+                    <script dangerouslySetInnerHTML={{
+                        __html: `
+                            if(!document.cookie?.includes("admin-template-auth")){
+                                window.location.href = "/autenticacao"
+                            }
+                        `
+                    }}
+                    />                                        
+
+                </Head>
+
                 {props.children}
             </>
         )
